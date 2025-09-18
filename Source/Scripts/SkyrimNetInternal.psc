@@ -27,10 +27,19 @@ EndFunction
 Function SetActorDialogueTarget(Actor akActor, Actor akTarget = None) global
     skynet_MainController skynet = ((Game.GetFormFromFile(0x0802, "SkyrimNet.esp") as Quest) As skynet_MainController)
     if !skynet
-        Debug.MessageBox("Fatal Error: AnimationGeneric failed to retrieve controller.")
+        Debug.MessageBox("Fatal Error: SetActorDialogueTarget failed to retrieve controller.")
         return
     endif
     skynet.SetActorDialogueTarget(akActor, akTarget)
+EndFunction
+
+Function SetLookAt(Actor akActor, Actor akTarget) global
+    skynet_MainController skynet = ((Game.GetFormFromFile(0x0802, "SkyrimNet.esp") as Quest) As skynet_MainController)
+    if !skynet
+        Debug.MessageBox("Fatal Error: SetLookAt failed to retrieve controller.")
+        return
+    endif
+    akActor.SetLookAt(akTarget)
 EndFunction
 
 Function AddPackageToActor(Actor akActor, string packageName, int priority, int flags) global
